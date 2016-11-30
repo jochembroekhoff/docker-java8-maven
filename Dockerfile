@@ -53,6 +53,7 @@ RUN echo "b9c3b7fb8164b48ee61454778e9ee482 /tmp/git-lfs.tar.gz" | md5sum -c
 RUN mkdir /tmp/git-lfs
 RUN tar xzf /tmp/git-lfs.tar.gz -C /tmp
 RUN /tmp/git-lfs-1.5.2/install.sh
+RUN git lfs install
 
 CMD [""]
 
