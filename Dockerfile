@@ -4,7 +4,7 @@
 
 FROM ubuntu:16.04
 
-MAINTAINER Kai Winter (https://github.com/kaiwinter)
+MAINTAINER Jochem Broekhoff (http://github.com/jochembroekhoff)
 
 # this is a non-interactive automated build - avoid some warning messages
 ENV DEBIAN_FRONTEND noninteractive
@@ -46,6 +46,13 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 # configure symbolic links for the java and javac executables
 RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
+
+# install Git LFS
+RUN wget --no-verbose -O /tmp/git-lfs.tar.gz https://github.com/git-lfs/git-lfs/releases/download/v1.5.2/git-lfs-linux-amd64-1.5.2.tar.gz
+RUN echo "b9c3b7fb8164b48ee61454778e9ee482 /tmp/git-lfs.tar.gz" | md5sum -c
+RUN mkdir /tmp/git-lfs
+RUN tar xzf /tmp/git-lfs.tar.gz -C /tmp
+RUN /tmp/git-lfs-1.5.2/install.sh
 
 CMD [""]
 
