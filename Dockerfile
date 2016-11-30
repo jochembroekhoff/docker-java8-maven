@@ -62,7 +62,6 @@ RUN build_deps="curl ca-certificates" && \
     git lfs install && \
     DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove ${build_deps} && \
     rm -r /var/lib/apt/lists/*
-RUN git lfs install
 
 CMD [""]
 
