@@ -53,7 +53,7 @@ RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 &
 #RUN mkdir /tmp/git-lfs
 #RUN tar xzf /tmp/git-lfs.tar.gz -C /tmp
 #RUN /tmp/git-lfs-1.5.2/install.sh
-#RUN git lfs install
+
 RUN build_deps="curl ca-certificates" && \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ${build_deps} && \
@@ -62,6 +62,7 @@ RUN build_deps="curl ca-certificates" && \
     git lfs install && \
     DEBIAN_FRONTEND=noninteractive apt-get purge -y --auto-remove ${build_deps} && \
     rm -r /var/lib/apt/lists/*
+RUN git lfs install
 
 CMD [""]
 
